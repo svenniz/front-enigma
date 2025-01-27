@@ -1,40 +1,29 @@
-import { useState } from 'react'
-import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Header from './Header'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Lobby from '../pages/Lobby';
+import Draft from '../pages/Draft';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App: React.FC = () => {
   return (
-    <>
-    
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <div className='container'>
-      <Header subtitle='Trying stuff'/>
-    </div>
-    </>
-  )
-}
+    <Router>
+      <div className="app-container">
+        <header className="p-4 bg-blue-600 text-white text-center">
+          <h1>MTG Draft Simulator</h1>
+        </header>
 
-export default App
+        <main className="p-4">
+          <Routes>
+            <Route path="/" element={<Lobby />} />
+            <Route path="/draft" element={<Draft />} />
+          </Routes>
+        </main>
+
+        <footer className="p-4 bg-gray-800 text-white text-center">
+          <p>MTG Draft Simulator © 2025</p>
+        </footer>
+      </div>
+    </Router>
+  );
+};
+
+export default App;
